@@ -61,15 +61,11 @@
                                 <ul class="list-group list-group-flush">
 
                                     <li class="list-group-item"> 
-                                        <a href="formManagment.jsp">Crear Formularios </a>
+                                        <a href="principal/formManagment.jsp">Crear Formularios </a>
                                     </li>
 
                                     <li class="list-group-item"> 
-                                        <a href="#">Editar Formularios</a>
-                                    </li>
-
-                                    <li class="list-group-item"> 
-                                        <a href="#  ">Ver Formularios</a>
+                                        <a href="principal/formManagment.jsp">Ver Formularios</a>
                                     </li>
 
                                 </ul>
