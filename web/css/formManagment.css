@@ -1,12 +1,5 @@
-#navContent {
-    border: 1px solid rgba(28,110,164,0.26);
-    border-radius: 4px;
-    min-width: 242px;
-}
 
-#navbar {
-    margin: 0px 0px 0px 0px ;
-}
+
 
 .cbtn {
     margin-left: auto;
@@ -15,7 +8,7 @@
 
 
 #espacioForm {
-
+    color: black;
     overflow: auto;
     height: 350px;
     display: block;
@@ -25,7 +18,9 @@
     margin-right: auto;
     width: 100%;
     border: 1px solid grey;
-    padding: 1px 1px 1px 1px;
+    padding: 5px 5px 5px 5px;
+    background-color: white;
+    border-radius: 7px 7px 7px 7px;
 }
 
 #espacioOpcionesSelect {
@@ -50,17 +45,6 @@
     margin-right: auto;
 }
 
-.wrapper {
-    display: flex;
-    align-items: stretch;
-}
-
-#sidebar {
-    min-width: 242px;
-    max-width: 500px;
-}
-
-
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
@@ -75,16 +59,10 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 
-#sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
-    color: #fff;
-    transition: all 0.3s;
-}
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+
 }
 
 #sidebar ul.components {
@@ -103,9 +81,10 @@ a, a:hover, a:focus {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #585858;
     background: #fff;
 }
+
 
 ul ul a {
     font-size: 0.9em !important;
