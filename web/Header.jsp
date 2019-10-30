@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar navbar-expand navbar-dark  " style="margin-bottom: 10px;  font-family: serif,sans-serif;  background: #171a21 ">
+<nav id="navbar" class="navbar navbar-expand" style="color: white" >
     
     <div class="col">
         <a class="navbar-brand" href="/Smart-msph/principal/principalAdministrador.jsp">Smart MSPH</a>
@@ -13,7 +13,7 @@
             <ul class="navbar-nav mr-auto">
                 <!-- conduce a iniciar sesion en el sistema  -->
                 <li  class="nav-item">
-                    <a onclick="sessionStorage.clear()"class="nav-link" href="/Smart-msph/logout">Salir sesion</a>
+                    <a onclick="sessionStorage.clear()"class="nav-link" href="/Smart-msph/logout">Salir</a>
                 </li>    
                 <!-- conduce a iniciar sesion en el sistema  -->
                

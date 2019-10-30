@@ -1,4 +1,10 @@
 $(document).ready(function() {
+  
+    
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+    
     $("#formSelectOptions").hide()
 
 
@@ -84,7 +90,7 @@ function addNewOption(txt) {
 
 
 function saveForm() {
-    let html =  $("#espacioForm").val();
+    let html =  $("#espacioForm").html();
     let formName = $("#inputNombreForm").val();
     let departament = $("#inputIdDepartamento").val();
     //el departamento deberia ser incluido en todos los forms.
