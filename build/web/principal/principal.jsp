@@ -47,7 +47,7 @@
         <li class="item" id="Denuncias">
           <a href="#Denuncias" class="btn">Denuncias</a>
           <div class="smenu">
-            <a href="#">Nueva</a>
+              <a href="../presentacion/Denuncia/CreaDenuncia.jsp">Nueva</a>
             <a href="#">Mis Denuncias</a>
             <a href="#">Borrador</a>
           </div>

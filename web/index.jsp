@@ -12,9 +12,10 @@
         <title>SMARTHMSPH</title>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script> 
-
-        <%@ include file="/Head.jsp" %>
         <script src="js/login.js" type="text/javascript"></script>
+        <script src="js/main.js" type="text/javascript"></script>
+        <%@ include file="/Head.jsp" %>
+   
     </head>
 
 
@@ -45,7 +46,7 @@
 
         </form>
 
-        <script src="js/main.js" ></script>
+    
 
     </body>
 </html>

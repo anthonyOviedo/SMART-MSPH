@@ -18,8 +18,10 @@
         <base href="http://localhost:8084/Smart-msph/">   
         <style>.gmaps {height:400px;width: 50%;}</style>
         <title>Formulario de Denuncia</title>  
+       
     </head>
-    <body onload="init();">
+    <body onload="init();" style="background-color: #1b2838  ; text-align:justify; color: #c6d4df">
+         <%@ include file="/Header.jsp" %>
 
         <form role="form">
             <div class="form-group">
@@ -43,17 +45,17 @@
   </div>
     </div>
 
-                <textarea  class="form-control"  style="width: 40%" name="campos"  id="campoxd" required/></textarea>
+                <textarea  class="form-control"  style="width: 60%" style="width: 40%" name="campos"  id="campoxd" required/></textarea>
                 <span >Descripcion de la Denuncia</span>
             </div> 
             <div class="form-group">
                 <input name="file-input" id="file-input" type="file"/>
                 <br />
-                <img id="imgSalida"  class="col-sm-3 col-sm-3" src="" />
+                <img id="imgSalida"  style="width: 60%" style="height:  60%" class="img-thumbnail" src="" />
 
             </div>
             <div class="form-group">
-                <select id="menuVotacion"  name="Departamento">
+                <select id="departamentos"  name="Departamento"  style="color:#080200">
                     <option value="value1">Gestion Ambiental</option> 
                     <option value="value2" selected>Tecnologias de la Informacion</option>
                     <option value="value3">Recursos Humanos</option>
@@ -61,7 +63,7 @@
                 <span class="floating-label">Eliga el departamento</span> <span id="error-surname1">   </span>
             </div>  
 
-            <div data-key="AIzaSyDCat1dhN5tcIYsYVbpLTy_y4LTPfYHAGM" id="hola"
+            <div data-key="AIzaSyDCat1dhN5tcIYsYVbpLTy_y4LTPfYHAGM" id="hola" style="width: 60%" style="height:  60%"
                  data-control-zoom="true"
                  data-control-type="true"
                  data-control-scale="true"
@@ -79,16 +81,17 @@
                     data-marker-heigth="45"
                     id="marca"
                     class="marker">
-                    <div   class="map-card">
+                    <div   class="map-card"  style="color:#080200">
                         <h1>Este es el lugar de los hechos</h1>
-                        <p>Direccion: Fake street, #445, Stgo.</p>
-                        <p>Telefono: +84286309</p>
-                        <p>Correo: LeinerCastro@gmail.com</p>
+                           <p id="username1"></p>
+                        <p id="identificacion1"></p>
+                        <p id="Fecha"></p>
+                       
                         <img id="imgentrada"   class="col-sm-12 col-sm-12" src="" />
                     </div>
                 </div>
             </div>
-            <input onclick="enviar();" type="button" class="btn btn-primary"  value="Enviar"/>
+            <input onclick="enviar2();" type="button" class="btn btn-primary"  value="Enviar"/>
         </form>
         <script>
             $(function () {
