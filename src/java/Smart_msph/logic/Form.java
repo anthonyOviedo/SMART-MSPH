@@ -13,10 +13,14 @@ public class Form {
     private String id;
     private String htmlForm;
     private String name;
+    private int department;
+    
+
     
     public Form(){}
     
-    public Form(String htmlForm, String name) {
+    public Form(String name, String htmlForm, int department) {
+        this.department = department;
         this.htmlForm = htmlForm;
         this.name = name;
     }
@@ -33,6 +37,10 @@ public class Form {
         return name;
     }
 
+    public int getDepartment() {
+        return department;
+    }
+   
     public void setId(String id) {
         this.id = id;
     }
