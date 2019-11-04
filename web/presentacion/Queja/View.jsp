@@ -11,9 +11,11 @@
         <link href="css/complainStyle.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="js/Complain.js" type="text/javascript"></script>
+                <link href="css/base.css" rel="stylesheet" type="text/css"/>
+
 
     </head>
-    <body onload="departments()" style="background-color: #1b2838  ; text-align:justify; color: #c6d4df">
+    <body onload="departments()" >
         <%@ include file="/Header.jsp" %>
         <h1 style="text-align: center">Formulario de quejas</h1>
 
