@@ -33,6 +33,16 @@ public class Model {
         return uniqueInstance;
     }
 
+    public void addForm(String[] listCampos) throws Exception{
+        String name = listCampos[0];
+        String htmlForm = listCampos[1];
+        int department = Integer.parseInt( listCampos[2]);
+        
+        Form unForm = new Form(name,htmlForm,department);
+        
+        dao.insertForm(unForm);
+    }
+    
     public void agregarCiudadano(String[] listCampos)
             throws Exception {
         //guardar campos en variables

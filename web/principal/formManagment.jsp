@@ -137,76 +137,89 @@
                 </div>
             </div>
         </div>
-<!--*******************all-->
-<div class="row" style="margin-right: 0px ;">
+        <!--*******************all-->
+
+        <div class="row" style="margin-right: 0px ; wi">
+
+
+            <!-- Submenu -->
             <!-- Sidebar configurar el boton para que aparezca y desaparezca-->
-            <div class="col-2 contentContainer" style="padding-left: 10px;" >
-                <nav id="sidebar">
-                    <div class="sidebar-header ">
-                        <h3>Mantenimiento de Formularios</h3>
-                    </div>
-                    <ul class="list-unstyled components">
-                        <p>descripcion....</p>
-                        <li>
-                            <a onclick="ShowNewForm()">Nuevo Formulario</a>
-                        </li>
-                        <li>
-                            <a onclick="ShowDisplayForms()">Ver formularios</a>
-                        </li>
-                        <li>
-                            <a onclick="ShowHelp()">Ayuda</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <!--contenido-->
-            <div class="col-sm contentContainer" style="width: 500px; padding-bottom: 10px;" >
-                <div style="margin-left: auto;margin-right: auto;">
-                    <center>
-                        <div>
-                            <h1>Formulario</h1>
+                <div class="col-2 contentContainer" style="padding-left: 10px;" >
+                    <nav id="sidebar">
+                        <div class="sidebar-header ">
+                            <h3>Mantenimiento de Formularios</h3>
                         </div>
-                        <div class="row  ">
-
-                            <div class="col">
-                                <div class="form-label-group">
-                                    <label class="left">Nombre de Fromulario</label>
-                                    <input type="text" id="inputNombreForm" class="form-control" placeholder="Nombre" required="" autofocus="">
-                                    <label for="inputNombreForm"></label>
-                                </div>
-                                <div class="form-label-group">
-                                    <label class="left">Departamento</label>
-                                    <input type="text" id="inputIdDepartamento" class="form-control" placeholder="id Departamento" required="" autofocus="">
-                                    <label for="inputIdDepartamento"></label>
-                                </div>
-                            </div>
-                          
-                        </div>
-
-
-                    </center>
-
-                    <button class="js-boton btn btn-light btn-md" data-type="bold"><i class="fas fa-bold"></i></button>
-                    <button class="js-boton btn btn-light btn-md" data-type="italic"><i class="fas fa-italic"></i></span></button>
-                    <button class="js-boton btn btn-light btn-md" data-type="justifyLeft"><i class="fas fa-align-left"></i></button>
-                    <button class="js-boton btn btn-light btn-md" data-type="justifyCenter"><i class="fas fa-align-center"></i></button>
-                    <button class="js-boton btn btn-light btn-md" data-type="justifyRight"><i class="fas fa-align-right"></i></button>
-                    <button type="button" class="js-boton btn btn-light btn-md" data-toggle="modal" data-target="#myModal"> Nuevo Campo</button>
-                    <button onclick="showPDF()" id="btn-guardar" class="js-boton btn btn-light btn-md"><i class="fas fa-file-pdf"></i></button>
-                    <button onclick="saveForm()" id="btn-guardar" class="js-boton btn btn-success btn-md"><i class="far fa-save"></i></button>
-                    <button class="js-boton btn  btn-danger btn-md"><i class="fas fa-undo-alt"></i></button>
-                          
-                    <div class="espacioForm" id="espacioForm" contenteditable="true">
-                        
-                          
-
-                    </div>  
-                    <div contenteditable="false" ></div>
-                    <!--                        footer -->
-
+                        <ul class="list-unstyled components">
+                            <p>descripcion....</p>
+                            <li>
+                                <a onclick="ShowNewForm()">Nuevo Formulario</a>
+                            </li>
+                            <li>
+                                <a onclick="showFormsTable()">Ver formularios</a>
+                            </li>
+                            <li>
+                                <a onclick="ShowHelp()">Ayuda</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            </div>
+            
+
+            <!--contenido--> 
+
+                <div id="NewForm">
+                    <div class="col-sm contentContainer" style="padding-bottom: 10px;" >
+                        <div style="margin-left: auto;margin-right: auto;">
+                            <center>
+                                <div>
+                                    <h1>Formulario</h1>
+                                </div>
+                                <div class="row  ">
+
+                                    <div class="col">
+                                        <div class="form-label-group">
+                                            <label class="left">Nombre de Fromulario</label>
+                                            <input type="text" id="inputNombreForm" class="form-control" placeholder="Nombre" required="" autofocus="">
+                                            <label for="inputNombreForm"></label>
+                                        </div>
+                                        <div class="form-label-group">
+                                            <label class="left">Departamento</label>
+                                            <input type="text" id="inputIdDepartamento" class="form-control" placeholder="id Departamento" required="" autofocus="">
+                                            <label for="inputIdDepartamento"></label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </center>
+
+                            <button class="js-boton btn btn-light btn-md" data-type="bold"><i class="fas fa-bold"></i></button>
+                            <button class="js-boton btn btn-light btn-md" data-type="italic"><i class="fas fa-italic"></i></span></button>
+                            <button class="js-boton btn btn-light btn-md" data-type="justifyLeft"><i class="fas fa-align-left"></i></button>
+                            <button class="js-boton btn btn-light btn-md" data-type="justifyCenter"><i class="fas fa-align-center"></i></button>
+                            <button class="js-boton btn btn-light btn-md" data-type="justifyRight"><i class="fas fa-align-right"></i></button>
+                            <button type="button" class="js-boton btn btn-light btn-md" data-toggle="modal" data-target="#myModal"> Nuevo Campo</button>
+                            <button onclick="showPDF()" id="btn-guardar" class="js-boton btn btn-light btn-md"><i class="fas fa-file-pdf"></i></button>
+                            <button onclick="saveForm()" id="btn-guardar" class="js-boton btn btn-success btn-md"><i class="far fa-save"></i></button>
+                            <button class="js-boton btn  btn-danger btn-md"><i class="fas fa-undo-alt"></i></button>
+
+                            <div class="espacioForm" id="espacioForm" contenteditable="true">
+
+
+
+                            </div>  
+                            <div contenteditable="false" ></div>
+                            <!--                        footer -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="FormsTable">
+                    <h1>Formularios Registrados:</h1>
+                </div> 
+
         </div>
     </div>
 
