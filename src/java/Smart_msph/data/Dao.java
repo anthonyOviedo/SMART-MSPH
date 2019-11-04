@@ -254,9 +254,9 @@ public class Dao {
     }
 
     public void insertForm(Form f) throws Exception {
-        String sql = "insert into createform (id,name,form)"
-                + " values ('%d','%s','%s')";
-        sql = String.format(sql, f.getId(), f.getName(), f.getHtmlForm());
+        String sql = "insert into form(name,html,department_id)"
+                + " values ('%s','%s','%d')";
+        sql = String.format(sql, f.getName(), f.getHtmlForm(), f.getDepartment());
         int count = db.executeUpdate(sql);
         if (count == 0) {
             throw new Exception("Form existente");

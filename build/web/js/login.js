@@ -19,7 +19,7 @@ function iniciar(){
         };
 
         sessionStorage.setItem('logged',JSON.stringify(user));      
-        if(request.role==='ciudadano'){
+        if(request.role==='ciudadano'||request.role==='Ciudadano'){
             window.location = "principal/principal.jsp";
         } else {
             window.location = "principal/principalAdministrador.jsp";

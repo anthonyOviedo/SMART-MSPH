@@ -50,7 +50,7 @@ public class FileUploadHandler extends HttpServlet {
                     }
                 } else {
                     if (fileItem.getSize() > 0) {
-                        fileItem.write(new File("C:\\SMART-MSPH\\SMART-MSPH\\web\\newsImg\\" + fileItem.getName()));
+                        fileItem.write(new File("C:\\SMART-MSPH\\web\\newsImg\\" + fileItem.getName()));
                         String ruta = "newsImg/"+fileItem.getName();
                         
                         News news = new News();

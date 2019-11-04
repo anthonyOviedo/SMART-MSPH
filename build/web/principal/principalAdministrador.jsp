@@ -14,11 +14,12 @@
         <%@ include file="/Head.jsp" %>
         <link href="css/base.css" rel="stylesheet">
     </head>
+
     <body>
+        <%@ include file="/Header.jsp" %>
         <!-- hacer toda esta picha en un jsp distinto sin la ide de mobile first-->
-        <div>
-            <%@ include file="/Header.jsp" %>
-        </div>
+
+
         <div class="center">
 
             <div class="center" style="margin-top: 100px">
