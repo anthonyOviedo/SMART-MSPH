@@ -48,7 +48,6 @@ public class Dao {
 
     private Funcionario funcionario(ResultSet rs) {
         try {
-            System.out.println("aaa");
             Funcionario fun = new Funcionario();
             fun.setId(rs.getInt("id"));
             fun.setNombre(rs.getString("administratorname"));
@@ -218,6 +217,16 @@ public class Dao {
         }
     }
 
+    private Form form(ResultSet rs) throws SQLException {
+        Form f = new Form();
+        f.setId(rs.getInt("id"));
+        f.setName(rs.getString("name"));
+        f.setHtmlForm(rs.getString("html"));
+        f.setDepartment(rs.getInt("department_id"));
+        
+        return f;
+    }
+
     public void insertNews(News c) throws Exception {
         String sql = "insert into news (description,photo1) values ('%s','%s')";
         sql = String.format(sql, c.getDescripcion(), c.getImagen());
@@ -236,6 +245,21 @@ public class Dao {
             ResultSet rs = db.executeQuery(sql);
             while (rs.next()) {
                 resultado.add(news(rs));
+            }
+        } catch (SQLException ex) {
+        }
+        return resultado;
+    }
+
+    public List<Form> allForms() {
+        List<Form> resultado = new ArrayList<Form>();
+        try {
+            String sql = "select * from "
+                    + "Form";
+            sql = String.format(sql);
+            ResultSet rs = db.executeQuery(sql);
+            while (rs.next()) {
+                resultado.add(form(rs));
             }
         } catch (SQLException ex) {
         }
@@ -271,7 +295,8 @@ public class Dao {
             throw new Exception("noticia no existe");
         }
     }
-public List<departamento> alldepartments() {
+
+    public List<departamento> alldepartments() {
         List<departamento> resultado = new ArrayList<departamento>();
         try {
             String sql = "select * from "

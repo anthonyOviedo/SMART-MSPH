@@ -96,6 +96,7 @@ function saveForm() {
         type: "POST",
         data: dat.join()
     });
+
 }
 
 function showPDF() {
@@ -137,8 +138,41 @@ function showFormsTable() {
     $("#NewForm").hide("slow");
     $("#NewForm").width(0);
     //muestra
-    $("#FormsTable").width('80%');
+    $("#FormsTable").width('82%');
+    //traer de la base de datos el form para imprimirlo.
+    let query = "all";
+
+    $.ajax({
+        url: "api/formManagment/" + query,
+        type: "get",
+        dataType: "json"
+    }).done(function (data) {
+        //construir las celdas aqui para imprimirlas en el cuadro.
+        data.forEach(obj => appendNewRow(obj.id, obj.name, obj.department))
+
+    }).fail(function (data) {
+        window.alert("no funciono");
+    });
+
     $("#FormsTable").show("slow");
+
+}
+function appendNewRow(id, name, department) {
+    let tr = $("<tr></tr>");   // Create with jQuery
+    let td1 = $("<td></td>").text(id);
+    let td2 = $("<td></td>").text(name);
+    let td3 = $("<td></td>").text(department);
+
+    let btnVer = $("<button></button>").text("Ver");
+    btnVer.addClass("btn btn-success");
+    let td4 = $("<td></td>").append(btnVer);
+
+    let btnEliminar = $("<button></button>").text("Eliminar");
+    btnEliminar.addClass("btn btn-danger")
+    let td5 = $("<td></td>").append(btnEliminar);
+
+    tr.append(td1, td2, td3, td4, td5);      // Append the new elements 
+    $("#tableBody").append(tr);
 }
 
 function ShowNewForm() {

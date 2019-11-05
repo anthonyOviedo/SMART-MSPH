@@ -13,10 +13,8 @@ import java.util.List;
  *
  * @author leiner
  */
-public class Model {  
-    
-    
-    
+public class Model {
+
     Dao dao = null;
 
     public Model() {
@@ -33,16 +31,16 @@ public class Model {
         return uniqueInstance;
     }
 
-    public void addForm(String[] listCampos) throws Exception{
+    public void addForm(String[] listCampos) throws Exception {
         String name = listCampos[0];
         String htmlForm = listCampos[1];
-        int department = Integer.parseInt( listCampos[2]);
-        
-        Form unForm = new Form(name,htmlForm,department);
-        
+        int department = Integer.parseInt(listCampos[2]);
+
+        Form unForm = new Form(name, htmlForm, department);
+
         dao.insertForm(unForm);
     }
-    
+
     public void agregarCiudadano(String[] listCampos)
             throws Exception {
         //guardar campos en variables
@@ -53,25 +51,22 @@ public class Model {
         String password = listCampos[4];
         int idnumber = Integer.parseInt(listCampos[6]);
         String mail = listCampos[7];
-        String phoneNumber= listCampos[8];
-        
+        String phoneNumber = listCampos[8];
 
         //crea un usuario
-        Ciudadano unCiudadano = new Ciudadano(idnumber, name, surname1,surname2, mail, phoneNumber);
+        Ciudadano unCiudadano = new Ciudadano(idnumber, name, surname1, surname2, mail, phoneNumber);
         //crea un usuario a partir del ciudadano.
-        
+
 //meter el usuario en la base datos.
 //Usuario unUsuario = new Usuario(cedula, correo, contrasenya, correo, unCiudadano.getId(), null);
-
-    citizen_user citizenUser = new citizen_user(username,password,"Ciudadano",unCiudadano);
+        citizen_user citizenUser = new citizen_user(username, password, "Ciudadano", unCiudadano);
 
         dao.insertarCiudadano(unCiudadano);
-       dao.insertarUsuarioCiudadano(citizenUser);
+        dao.insertarUsuarioCiudadano(citizenUser);
 
     }
 
-
- public citizen_user login(String username, String password) throws Exception {
+    public citizen_user login(String username, String password) throws Exception {
         citizen_user user = dao.getcitizenuser(username);
         if (user.getPassword().equals(password)) {
             return user;
@@ -80,38 +75,34 @@ public class Model {
         }
     }
 
-
-
-   public void insertComplain(Complain c) throws Exception{
+    public void insertComplain(Complain c) throws Exception {
         dao.insertComplain(c);
     }
 
-     public void insertNews(News n) throws Exception{
+    public void insertNews(News n) throws Exception {
         dao.insertNews(n);
     }
-     public List<News> alNews(){
-            return dao.allnews();
-        } 
-     
+
+    public List<News> alNews() {
+        return dao.allnews();
+    }
+
     public void deleteNews(int id) throws Exception {
-       dao.DeleteNews(id);
+        dao.DeleteNews(id);
     }
 
-
-    public News getNews(int id) throws Exception{
+    public News getNews(int id) throws Exception {
         return dao.getNews(id);
-        
+
     }
 
+    public List<Form> allForms() {
+        return dao.allForms();
+    }
 
-
-
- public List<departamento> alldepartments(){
-            return dao.alldepartments();
-        }
-
-
-
+    public List<departamento> alldepartments() {
+        return dao.alldepartments();
+    }
 
 //    public Usuario LoggUsuarioCiudadano(int id, String contrasenya) throws Exception {
 //        Usuario u = dao.obtenerusuarioCiudadano(id);
@@ -121,7 +112,6 @@ public class Model {
 //            throw new Exception("Clave incorrecta");
 //        }
 //    }
-
 //    public Usuario LoggUsuariofuncionario(int id, String contrasenya) throws Exception {
 //        Usuario u = dao.obtenerusuarioFuncionario(id);
 //        if (u.getContrasenya().equals(contrasenya)) {
@@ -132,5 +122,4 @@ public class Model {
 //    }
 //
 //}
-
 }
