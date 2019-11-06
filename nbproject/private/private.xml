@@ -8,6 +8,7 @@
             <file>file:/C:/SMART-MSPH/web/css/base.css</file>
             <file>file:/C:/SMART-MSPH/web/presentacion/Queja/View.jsp</file>
             <file>file:/C:/SMART-MSPH/web/principal/Pagina2.jsp</file>
+            <file>file:/C:/SMART-MSPH/src/java/domRestful/api/NewsResource.java</file>
             <file>file:/C:/SMART-MSPH/src/java/Smart_msph/data/Smart_msph.properties</file>
             <file>file:/C:/SMART-MSPH/web/js/Complain.js</file>
             <file>file:/C:/SMART-MSPH/web/css/formManagment.css</file>
@@ -25,8 +26,10 @@
             <file>file:/C:/SMART-MSPH/src/java/domRestful/api/logout.java</file>
             <file>file:/C:/SMART-MSPH/src/java/Smart_msph/data/sql.java</file>
             <file>file:/C:/SMART-MSPH/src/java/Smart_msph/logic/Form.java</file>
+            <file>file:/C:/SMART-MSPH/src/java/domRestful/api/imagen.java</file>
             <file>file:/C:/SMART-MSPH/web/Header.jsp</file>
             <file>file:/C:/SMART-MSPH/web/js/login.js</file>
+            <file>file:/C:/SMART-MSPH/src/java/domRestful/api/GenericResource.java</file>
             <file>file:/C:/SMART-MSPH/src/java/domRestful/api/LoginResource.java</file>
             <file>file:/C:/SMART-MSPH/web/principal/principal.jsp</file>
             <file>file:/C:/SMART-MSPH/web/presentacion/login/login.jsp</file>
