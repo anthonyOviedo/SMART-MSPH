@@ -10,7 +10,7 @@ package Smart_msph.logic;
  * @author anton
  */
 public class Form {
-    private String id;
+    private int id;
     private String htmlForm;
     private String name;
     private int department;
@@ -25,7 +25,7 @@ public class Form {
         this.name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -41,7 +41,7 @@ public class Form {
         return department;
     }
    
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -52,5 +52,9 @@ public class Form {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setDepartment(int department) {
+        this.department = department;
+     }
     
 }
