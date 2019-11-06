@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
-    $("#formSelectOptions").hide()
+    $("#formSelectOptions").hide();
 
 
     $(".js-boton").mousedown(function (event) {
@@ -49,11 +49,11 @@ function addNewInput() {
     let campoNuevo = $("<input/>", {
         type: _tipo,
         id: _nombre,
-        name: "inputText",
-        class: "inputSpace form-control-sm"
+        class: "formInput"
     });
     $("#espacioForm").append(campoNuevo); // Insert new elements in div
-    $("#formSelectOptions").hide()
+    $("#formSelectOptions").hide();
+    $("#espacioForm").val($("#espacioForm").val());
 }
 
 

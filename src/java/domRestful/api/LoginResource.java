@@ -38,16 +38,18 @@ public class LoginResource {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
     public citizen_user add(citizen_user user) throws Exception {
-   System.out.println("al menos llego aqui");
-       
-         citizen_user u = new citizen_user();
-         u.setPassword(user.getPassword());
-         u.setUsername(user.getUsername());
+        System.out.println("al menos llego aqui");
+
+        citizen_user u = new citizen_user();
+        u.setPassword(user.getPassword());
+        u.setUsername(user.getUsername());
 //********falta bloque de try...
 //*****se cae en la siguiente linde de codigo en modelo, probablemente en el constructor.        
         // System.out.println(u.getUsername());
-      return  Model.instance().login(u.getUsername(), u.getPassword());
-
+        citizen_user usr = Model.instance().login(u.getUsername(), u.getPassword());
+        
+        return usr;
+        
         //return "fue y regresa..";
     }
 }
