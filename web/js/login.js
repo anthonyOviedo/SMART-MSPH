@@ -1,3 +1,25 @@
+$(document).ready(function () {
+
+    $('#user').keyup(function (event) {
+        checkField(event); 
+    });
+    $('#pass').keyup(function (event) {
+        checkField(event);
+    });
+    
+});
+
+function checkField(event){
+    
+    if ( $('#pass').val()=== "" ){
+        console.log("cambiar clase de campo pass")
+    }
+    
+    if ( $('#user').val()=== "" ){
+        console.log("cambiar clase de campo user")
+    }
+}
+
 function iniciar() {
     let username = $("#user").val();
     let password = $("#pass").val();
@@ -29,4 +51,5 @@ function handleData(request) {
     } else if (request.role === 'administrador' || request.role === 'Administrador') {
         window.location = "principal/principalAdministrador.jsp";
     }
-} 
+}
+
