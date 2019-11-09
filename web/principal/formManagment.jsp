@@ -20,8 +20,7 @@
 
 
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1'>
+       <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1'>
 
         <meta charset='utf-8'>
         <title> Mantenimiento de Formularios </title>
@@ -40,9 +39,7 @@
 
         <link href="css/base.css" rel="stylesheet">
         <link href="css/formManagment.css" rel="stylesheet">
-        <link href="../css/formManagment.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/formManagment.css" rel="stylesheet" type="text/css"/>
-
+    
     </head>
 
     <body id="body">
@@ -143,7 +140,6 @@
                     </ul>
                 </nav>
             </div>
-
 
             <!--contenido--> 
 

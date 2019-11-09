@@ -21,6 +21,8 @@
         <script src="js/login.js" type="text/javascript"></script>
     </head>
 
+    
+    
     <body>
         <div class="container" style="background-color: transparent">
             <div>
@@ -39,15 +41,15 @@
 
                                 <div class="container-login100-form-btn">
 
-                                    <div class="wrap-input100 validate-input m-t-85 m-b-35" >
-                                        <input id="user" class="input100" type="text" name="username">
+                                    <div class="check wrap-input100 validate-input m-t-85 m-b-35" >
+                                        <input id="user" class="check input100" type="text" name="username">
                                         <span class="focus-input100" data-placeholder="Nombre de Usuario"></span>
                                     </div>
                                 </div>
 
-                                <div class="container-login100-form-btn">
+                                <div class="check container-login100-form-btn">
                                     <div id="password" class="wrap-input100 validate-input m-b-50">
-                                        <input id="pass" class="input100" type="password" name="pass">
+                                        <input id="pass" class="check input100" type="password" name="pass">
                                         <span class="focus-input100" data-placeholder="Contraseña"></span>
                                     </div>
                                 </div>

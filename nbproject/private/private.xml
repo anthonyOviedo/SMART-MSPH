@@ -4,11 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/SMART-MSPH/web/css/complainStyle.css</file>
+            <file>file:/C:/SMART-MSPH/web/css/register.css</file>
             <file>file:/C:/SMART-MSPH/web/Head.jsp</file>
             <file>file:/C:/SMART-MSPH/web/css/base.css</file>
             <file>file:/C:/SMART-MSPH/web/presentacion/Queja/View.jsp</file>
             <file>file:/C:/SMART-MSPH/web/principal/Pagina2.jsp</file>
             <file>file:/C:/SMART-MSPH/src/java/domRestful/api/NewsResource.java</file>
+            <file>file:/C:/SMART-MSPH/web/css/jquery.gmaps.css</file>
             <file>file:/C:/SMART-MSPH/src/java/Smart_msph/data/Smart_msph.properties</file>
             <file>file:/C:/SMART-MSPH/web/js/Complain.js</file>
             <file>file:/C:/SMART-MSPH/web/css/formManagment.css</file>
@@ -17,7 +19,9 @@
             <file>file:/C:/SMART-MSPH/web/js/main.js</file>
             <file>file:/C:/SMART-MSPH/web/principal/noticiaAdmin.jsp</file>
             <file>file:/C:/SMART-MSPH/web/css/Denuncia.css</file>
+            <file>file:/C:/SMART-MSPH/web/js/modulo.js</file>
             <file>file:/C:/SMART-MSPH/web/css/style.css</file>
+            <file>file:/C:/SMART-MSPH/web/css/style1.css</file>
             <file>file:/C:/SMART-MSPH/web/presentacion/Denuncia/CreaDenuncia.jsp</file>
             <file>file:/C:/SMART-MSPH/src/java/com/chilyfacts/com/FileUploadHandler.java</file>
             <file>file:/C:/SMART-MSPH/web/principal/formManagment.jsp</file>
@@ -30,6 +34,8 @@
             <file>file:/C:/SMART-MSPH/web/Header.jsp</file>
             <file>file:/C:/SMART-MSPH/web/js/login.js</file>
             <file>file:/C:/SMART-MSPH/src/java/domRestful/api/GenericResource.java</file>
+            <file>file:/C:/SMART-MSPH/web/css/login.css</file>
+            <file>file:/C:/SMART-MSPH/web/css/style2.css</file>
             <file>file:/C:/SMART-MSPH/src/java/domRestful/api/LoginResource.java</file>
             <file>file:/C:/SMART-MSPH/web/principal/principal.jsp</file>
             <file>file:/C:/SMART-MSPH/web/presentacion/login/login.jsp</file>
@@ -44,6 +50,7 @@
             <file>file:/C:/SMART-MSPH/web/js/ciudadano_crearUsuario_crear.js</file>
             <file>file:/C:/SMART-MSPH/src/java/Smart_msph/logic/Queja.java</file>
             <file>file:/C:/SMART-MSPH/src/java/Smart_msph/logic/News.java</file>
+            <file>file:/C:/SMART-MSPH/src/java/Smart_msph/logic/citizen_user.java</file>
         </group>
     </open-files>
 </project-private>
