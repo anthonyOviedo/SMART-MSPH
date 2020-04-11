@@ -21,16 +21,23 @@ export class DepartmentService {
   }
 
   getDepartments() {
-    const url = `${URL_SERVICE}/Departamento/lista`;
+    const url = `${URL_SERVICE}/Departamento/list`;
     return this.http.get(url).pipe(map((data: ApiResponse) => data.result.departments));
   }
 
   addDepartment(nDId, nDnombre, nDpersona_id) {
     let url = `${URL_SERVICE}/Departamento/add`;
-
     return this.http.post(url, new Departamento(+nDId, nDnombre, nDpersona_id))
       .pipe(
         map((resp: ApiResponse) => Swal.fire({ title: 'Registro exitoso', text: resp.message, type: 'success' }))
+      );
+  }
+
+  deleteDepartement(departmentId) {
+    let url = `${URL_SERVICE}/Departamento/delete/${departmentId}`;
+    return this.http.delete(url)
+      .pipe(
+        map((resp: ApiResponse) => Swal.fire({ title: 'Se elimino el Departamento', text: resp.message, type: 'success' }))
       );
   }
 

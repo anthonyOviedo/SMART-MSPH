@@ -85,6 +85,29 @@ namespace Business.Services
             }
         }
 
+        public void deleteDepartment(string departmentId) {
+            string query;
+
+            try
+            {
+                connection.Open();
+                connection.BeginTransaction();
+
+                query = "delete from department where Department_Id = " + departmentId + ";";
+                connection.Execute(query);
+                connection.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                connection.RollBackTransaction();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         #endregion
 
         #region Implements Interface IDisposable

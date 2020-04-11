@@ -12,7 +12,7 @@ namespace ControlClaro.Controllers
     {
         #region Definition of Services
         [HttpGet]   
-        [Route("api/Departamento/lista")]
+        [Route("api/Departamento/list")]
         public HttpResponseMessage Lista()
         {
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -79,6 +79,44 @@ namespace ControlClaro.Controllers
             return response;
         }
 
+
+
+
+        [HttpDelete]
+        [Route("api/Departamento/delete/{departmentId}")]
+        public HttpResponseMessage Eliminar(string departmentId)
+        {
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            ResponseConfig config = VerifyAuthorization(Request.Headers);
+            RestResponse data = new RestResponse();
+
+            try
+            {
+                VerifyMessage(config.errorMessage);
+
+                using (DepartmentService service = new DepartmentService())
+                {
+                    service.deleteDepartment(departmentId);
+                    data.result = null;
+                    data.status = true;
+                    data.message = "El Departamento seleccionado se eliminó correctamente";
+                }
+            }
+
+            catch (Exception ex)
+            {
+                response.StatusCode = config.isAuthenticated ? HttpStatusCode.BadRequest : HttpStatusCode.Unauthorized;
+                data.status = false;
+                data.message = ex.Message;
+                data.error = NewError(ex, "Eliminar usuario");
+            }
+            finally
+            {
+                response.Content = CreateContent(data);
+            }
+
+            return response;
+        }
 
         #endregion
         //[HttpDelete]

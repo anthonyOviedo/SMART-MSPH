@@ -32,11 +32,19 @@ export class DepartmentComponent implements OnInit {
   ngOnInit() {
     this.loadusers();
   }
+
   saveDepartment() {
     this.departamentService.addDepartment(this.nDId.value, this.nDnombre.value, this.nDpersona_id.value).subscribe(result => {
       console.log(result);
     });
   }
+
+  deleteDepartment(departmentId) {
+    this.departamentService.deleteDepartement(departmentId).subscribe(result => {
+      console.log(result);
+    });
+  }
+
   showAll() {
     this.departamentService.getDepartments().subscribe(result => {
       this.departamentos = result;
@@ -47,6 +55,11 @@ export class DepartmentComponent implements OnInit {
     this.usuarioService.getUsers().subscribe(result => {
       this.usuarios = result.usuarios;
     });
+  }
+
+  editDepartment(departmentId) {
+    //mostrar en el modal el menu para editar
+
   }
 
 
