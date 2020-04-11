@@ -12,9 +12,10 @@ import { FormControl } from '@angular/forms';
 
 export class DepartmentComponent implements OnInit {
 
-  //ND new Department
   nDnombre = new FormControl('');
   nDpersona_id = new FormControl('');
+  nDId = new FormControl('');
+
 
   Departamento: Departamento;
   Usuario: Usuario;
@@ -32,7 +33,7 @@ export class DepartmentComponent implements OnInit {
     this.loadusers();
   }
   saveDepartment() {
-    this.departamentService.addDepartment(this.nDnombre.value, this.nDpersona_id.value).subscribe(result => {
+    this.departamentService.addDepartment(this.nDId.value, this.nDnombre.value, this.nDpersona_id.value).subscribe(result => {
       console.log(result);
     });
   }

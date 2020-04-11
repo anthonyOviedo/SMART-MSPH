@@ -25,10 +25,10 @@ export class DepartmentService {
     return this.http.get(url).pipe(map((data: ApiResponse) => data.result.departments));
   }
 
-  addDepartment(nDnombre, nDpersona_id) {
+  addDepartment(nDId, nDnombre, nDpersona_id) {
     let url = `${URL_SERVICE}/Departamento/add`;
 
-    return this.http.post(url, new Departamento(null, nDnombre, nDpersona_id))
+    return this.http.post(url, new Departamento(+nDId, nDnombre, nDpersona_id))
       .pipe(
         map((resp: ApiResponse) => Swal.fire({ title: 'Registro exitoso', text: resp.message, type: 'success' }))
       );
