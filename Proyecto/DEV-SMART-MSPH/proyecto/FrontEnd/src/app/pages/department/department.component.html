@@ -1,0 +1,80 @@
+<div>
+    <div>
+        <!-- busqeda de departamentos  -->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="id, nombre, encargado" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Buscar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Large modal -->
+    <div class="row">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo Departamento</button>
+        <button type="button" class="btn btn-primary" (click)="showAll()">Ver Todos</button>
+    </div>
+    <br>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Nuevo Departamento</h2>
+                </div>
+
+                <div class="container2">
+                    <!-- nombre inpuu t -->
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+                        </div>
+                        <input [formControl]="nDnombre" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Encargado</label>
+                        </div>
+                        <select [formControl]="nDpersona_id" class="custom-select" id="inputGroupSelect01">
+                            <option selected>Selecione un departamento</option>
+                            <!-- mandar a traer todos los usuarios para escojer uno, quiza un autocomplete para escojerlo...  -->
+                            <option *ngFor="let element of usuarios;" value={{element.persona.persona_Id}}> {{element.usuario_Id}} - {{element.nombre}} - {{element.persona.persona_Id}}</option>
+
+                        </select>
+                    </div>
+
+                    <button type="button" (click)="saveDepartment()" class="btn btn-primary">Guardar</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div>
+        <!-- tabla para visualizar los departamentos-->
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Nombre</th>
+                    <!-- <th scope="col">Lista de empleados</th>  boton para acceder a-->
+                    <th scope="col">Encargado</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let element of departamentos;">
+                    <td> {{element.departamento_Id}} </td>
+                    <td> {{element.nombre}}</td>
+                    <td> {{element.persona_id}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
