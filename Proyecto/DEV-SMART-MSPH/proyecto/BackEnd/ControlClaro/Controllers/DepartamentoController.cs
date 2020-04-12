@@ -11,6 +11,7 @@ namespace ControlClaro.Controllers
     public class DepartamentoController : ApiController
     {
         #region Definition of Services
+
         [HttpGet]   
         [Route("api/Departamento/list")]
         public HttpResponseMessage Lista()
@@ -80,8 +81,6 @@ namespace ControlClaro.Controllers
         }
 
 
-
-
         [HttpDelete]
         [Route("api/Departamento/delete/{departmentId}")]
         public HttpResponseMessage Eliminar(string departmentId)
@@ -119,6 +118,7 @@ namespace ControlClaro.Controllers
         }
 
         #endregion
+
         //[HttpDelete]
         //[Route("api/usuario/eliminar/{usuario_Id}/{emp_Id}/{producto_Id}")]
         //public HttpResponseMessage Eliminar(string usuario_Id)

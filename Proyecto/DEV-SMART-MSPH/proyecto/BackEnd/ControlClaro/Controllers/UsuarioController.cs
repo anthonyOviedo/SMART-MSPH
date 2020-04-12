@@ -12,7 +12,7 @@ namespace ControlClaro.Controllers
     {
         #region Definition of Services
         [HttpGet]
-        [Route("api/usuario/lista")]
+        [Route("api/Usuario/list")]
         public HttpResponseMessage Lista()
         {
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -26,7 +26,7 @@ namespace ControlClaro.Controllers
                 using (UsuarioService service = new UsuarioService())
                 {
                     var usuarios = service.Lista();
-                    data.result = new { usuarios, service.cantidad };
+                    data.result = new { usuarios};
                     data.status = true;
                 }
             }

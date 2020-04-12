@@ -23,12 +23,19 @@ export class UsuarioService {
     this.cargarStorage();
   }
 
+  list() {
+    const url = `${URL_SERVICE}/Usuario/list`;
+    return this.http.get(url).pipe(
+      map((resp: ApiResponse) => resp.result.usuarios)
+    );
+  }
+
   getUsers() {
-    let url = `${URL_SERVICE}/usuario/lista`;
-    return this.http.get(url)
-      .pipe(
-        map((resp: ApiResponse) => resp.result)
-      );
+    //debe de ser una busqueda con algun criterio en especifico....
+    let url = `${URL_SERVICE}/Usuario/list`;
+    return this.http.get(url).pipe(
+      map((resp: ApiResponse) => resp.result)
+    );
   }
 
   guardarStorage(token: string, usuario: Usuario, departamento: Departamento, persona: Persona) {
@@ -74,7 +81,8 @@ export class UsuarioService {
 
     return this.http.post(url, null)
       .pipe(
-        map((resp: ApiResponse) => this.guardarStorage(resp.result.token, resp.result.usuario, resp.result.usuario.departamento, resp.result.usuario.persona))
+        map((resp: ApiResponse) => this.guardarStorage(resp.result.token,
+          resp.result.usuario, resp.result.usuario.departamento, resp.result.usuario.persona))
       );
 
   }

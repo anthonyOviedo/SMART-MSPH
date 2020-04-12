@@ -19,6 +19,7 @@ namespace Business.Services
         }
         #endregion
         #region Definition of Public Methods
+
         public Usuario VerifyCredentials(string username, string password)
         {
             Usuario usuario = new Usuario();
@@ -80,7 +81,7 @@ namespace Business.Services
             try
             {
                 connection.Open();
-
+                //revisar query con lainer...
                 query = "select * from user;";
 
                 data = connection.SelectData(query);
@@ -94,7 +95,9 @@ namespace Business.Services
                     {
                         usuario_Id = row["User_Id"].ToString(),
                         nombre = row["UserName"].ToString(),
-                        persona = new Persona() { persona_Id = int.Parse(row["Person_Id"].ToString())  }
+                        rol = int.Parse(row["Role_id"].ToString()),
+                        persona = new Persona() { persona_Id = int.Parse(row["Person_Id"].ToString())  },
+                        departamento = new Departamento() { departamento_Id = int.Parse(row["department_id"].ToString()) }
                     });
                     
                 }
@@ -189,6 +192,7 @@ namespace Business.Services
                 connection.Close();
             }
         }
+        
         #endregion
         #region Implements Interface IDisposable
         public void Dispose()

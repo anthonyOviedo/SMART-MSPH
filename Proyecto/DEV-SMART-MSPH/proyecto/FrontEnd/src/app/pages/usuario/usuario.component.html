@@ -4,9 +4,8 @@
             <div class="card-body">
 
                 <div class="input-group">
-                    
-                    <input [(ngModel)]="criterio" name="criterio" (keyup)="cargarUsuarios()" type="text"
-                        class="form-control" placeholder="Buscar usuario...">
+
+                    <input [(ngModel)]="criterio" name="criterio" (keyup)="cargarUsuarios()" type="text" class="form-control" placeholder="Buscar usuario...">
 
                     <div class="input-group-append">
                         <button (click)="limpiaCriterio()" class="btn btn-outline-danger no-border" type="button">
@@ -22,36 +21,50 @@
 </div>
 
 <div class="row animated fadeIn">
+
+    <button type="button" class="btn btn-primary" (click)="cargarUsuarios()">Ver Todos</button>
+
     <div class="col-12">
         <div class="card">
             <div class="card-body">
 
-                <h3 class="card-title">Total registrados ( <small>{{ cantidad }}</small> )</h3>
+                <h3 class="card-title">Total registrados ( <small>{{ usuarios.length }}</small> )</h3>
 
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Usuario</th>
+                                <th>ID</th>
                                 <th>Nombre</th>
-                                <th class="text-center d-none d-lg-table-cell">Estado</th>
-                                <th class="text-center w-150">Acciones</th>
+                                <th>cedula </th>
+                                <th>Rol</th>
+                                <th>Departamento</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr
-                                *ngFor="let usuario of usuarios | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+
+                            <tr *ngFor="let usuario of usuarios">
                                 <td>
                                     {{ usuario.usuario_Id }}
                                 </td>
                                 <td>
-                                    {{ usuario.nombre }} <small *ngIf="usuario.usuario_Id === usuario_Id"> ( Yo )</small>
+                                    {{ usuario.nombre }}
                                 </td>
-                                <td class="text-center d-none d-lg-table-cell">
-                                    {{ usuario.activo ? 'Activo' : 'Inactivo' }}
+                                <td>
+                                    {{ usuario.persona.persona_Id }}
                                 </td>
-                                <td class="text-center w-150">
-                                    <button type="button" class="btn btn-primary" (click)="cargarUsuario( usuario )">
+                                <td>
+                                    {{ usuario.rol }}
+                                </td>
+
+                                <td>
+                                    {{ usuario.departamento.departamento_Id}}
+                                </td>
+
+                                <td>
+                                    <!-- (click)="cargarUsuario( usuario )" -->
+                                    <button type="button" class="btn btn-primary">
                                         <i class="material-icons">edit</i>
                                     </button>
                                     <button type="button" class="btn btn-danger" (click)="eliminar( usuario )">
@@ -59,15 +72,9 @@
                                     </button>
                                 </td>
                             </tr>
+
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <ngb-pagination class="d-flex justify-content-center" [(page)]="page"
-                                        [collectionSize]="usuarios.length" [boundaryLinks]="true" [rotate]="true"
-                                        [ellipses]="false" [maxSize]="5" [pageSize]="pageSize"></ngb-pagination>
-                                </td>
-                            </tr>
                         </tfoot>
                     </table>
                 </div>
@@ -77,7 +84,7 @@
     </div>
 </div>
 
-<div class="row animated fadeIn">
+<!-- <div class="row animated fadeIn">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
@@ -89,30 +96,19 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>Usuario</label>
-                            <input [(ngModel)]="usuario.usuario_Id" name="usuario_Id" id="txtUsuario" type="email"
-                                class="form-control" placeholder="Usuario" autocomplete="new-password" required>
+                            <input [(ngModel)]="usuario.usuario_Id" name="usuario_Id" id="txtUsuario" type="email" class="form-control" placeholder="Usuario" autocomplete="new-password" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Nombre</label>
-                            <input [(ngModel)]="usuario.nombre" name="nombre" type="text" class="form-control"
-                                placeholder="Nombre" autocomplete="new-password" required>
+                            <input [(ngModel)]="usuario.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" autocomplete="new-password" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>Contraseña</label>
-                            <input [(ngModel)]="usuario.password" name="password" id="txtPassword" type="password"
-                                class="form-control" placeholder="Contraseña" autocomplete="new-password" required>
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label>Activo</label>
-                            <select [(ngModel)]="usuario.activo" name="activo" class="form-control">
-                                <option value="false">NO</option>
-                                <option value="true">SI</option>
-                            </select>
+                            <input [(ngModel)]="usuario.password" name="password" id="txtPassword" type="password" class="form-control" placeholder="Contraseña" autocomplete="new-password" required>
                         </div>
                     </div>
 
@@ -133,4 +129,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
