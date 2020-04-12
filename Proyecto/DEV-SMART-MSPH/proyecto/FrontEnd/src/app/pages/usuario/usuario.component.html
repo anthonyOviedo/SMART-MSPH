@@ -20,11 +20,97 @@
     </div>
 </div>
 
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nuevo Usuario</h2>
+            </div>
+
+            <div class="container2">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 id="titulo">{{ title }}</h3>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Usuario</label>
+                                    <input [formControl]="nUidUser" name="usuario_Id" id="txtUsuario" type="email" class="form-control" placeholder="Usuario">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Nombre</label>
+                                    <input [formControl]="nUname" name="nombre" type="text" class="form-control" placeholder="Nombre">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Contraseña</label>
+                                    <input [formControl]="nUpassword" name="Contraseña" type="password" class="form-control" placeholder="Contraseña">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Cedula</label>
+                                    <input [formControl]="nUcedula" name="Cedula" type="text" class="form-control" placeholder="Cedula">
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <label>Rol</label>
+                                    <select [formControl]="nUrol" name="Rol" class="custom-select">                                    
+                                            <option selected>Selecione un ROL</option>
+                                            <!-- mandar a traer todos los ROLES
+                                            <option *ngFor="let element of Roles;" value={{element.persona.persona_Id}}> {{element.usuario_Id}} - {{element.nombre}} - {{element.persona.persona_Id}}</option> -->
+                                        </select>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Departamento</label>
+                                    <select [formControl]="nUdepartment" class="custom-select">
+                                                <option selected>Selecione un departamento</option>                           
+                                                <!-- mandar a traer todos los usuarios para escojer uno, quiza un autocomplete para escojerlo... 
+                                                <option *ngFor="let element of usuarios;" value={{element.persona.persona_Id}}> {{element.usuario_Id}} - {{element.nombre}} - {{element.persona.persona_Id}}</option> -->    
+                                        </select>
+                                </div>
+                            </div>
+
+
+                            <div class="float-right">
+
+                                <button type="submit" class="btn btn-primary" [disabled]="guardando">
+                                        <i class="material-icons">done</i>
+                                        Guardar
+                                    </button>
+
+                                <button data-dismiss="modal" (click)="nuevo()" type="button" class="btn btn-secondary" [disabled]="guardando">
+                                        <i class="material-icons">clear</i>
+                                        Cancelar
+                                    </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <div class="row animated fadeIn">
-
-    <button type="button" class="btn btn-primary" (click)="cargarUsuarios()">Ver Todos</button>
-
     <div class="col-12">
+        <div>
+            <button type="button" class="btn btn-primary" (click)="cargarUsuarios()">Ver Todos</button>
+            <!-- mostrar modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo Usuario</button>
+        </div>
+        <br>
         <div class="card">
             <div class="card-body">
 
@@ -85,48 +171,5 @@
 </div>
 
 <!-- <div class="row animated fadeIn">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-
-                <form ngNativeValidate #f="ngForm" (ngSubmit)="guardar( f )">
-
-                    <h3 id="titulo">{{ title }}</h3>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label>Usuario</label>
-                            <input [(ngModel)]="usuario.usuario_Id" name="usuario_Id" id="txtUsuario" type="email" class="form-control" placeholder="Usuario" autocomplete="new-password" required>
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label>Nombre</label>
-                            <input [(ngModel)]="usuario.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" autocomplete="new-password" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label>Contraseña</label>
-                            <input [(ngModel)]="usuario.password" name="password" id="txtPassword" type="password" class="form-control" placeholder="Contraseña" autocomplete="new-password" required>
-                        </div>
-                    </div>
-
-                    <div class="float-right">
-                        <button type="submit" class="btn btn-primary" [disabled]="guardando">
-                            <i class="material-icons">done</i>
-                            Guardar
-                        </button>
-
-                        <button (click)="nuevo()" type="button" class="btn btn-secondary" [disabled]="guardando">
-                            <i class="material-icons">clear</i>
-                            Cancelar
-                        </button>
-                    </div>
-
-                </form>
-
-            </div>
-        </div>
-    </div>
+    
 </div> -->

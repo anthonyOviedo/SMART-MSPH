@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/models/model.index';
 import { UsuarioService, CryptoService, MessageService } from 'src/app/services/service.index';
+import { FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-usuario',
@@ -12,6 +14,16 @@ export class UsuarioComponent implements OnInit {
 
   departamento: any;
   usuario_Id: string;
+
+  //para el nuevo usuario
+  nUidUser = new FormControl('');
+  nUname = new FormControl('');
+  nUpassword = new FormControl('');
+  nUcedula = new FormControl('');
+  nUrol = new FormControl('');
+  nUdepartment = new FormControl('');
+
+
 
   // Lista
   criterio: string = '';
@@ -41,7 +53,9 @@ export class UsuarioComponent implements OnInit {
   ngOnInit() {
 
   }
+  addUsuario() {
 
+  }
   nuevo() {
 
     this.newUser = true;
