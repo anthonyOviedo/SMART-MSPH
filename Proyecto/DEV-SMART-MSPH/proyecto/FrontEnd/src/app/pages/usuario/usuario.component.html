@@ -1,5 +1,5 @@
 <div class="row animated fadeIn">
-    <div class="col-12">
+    <!-- <div class="col-12">
         <div class="card">
             <div class="card-body">
 
@@ -17,7 +17,17 @@
 
             </div>
         </div>
+    </div> -->
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <!-- <input type="text" class="form-control" placeholder="id, nombre, encargado" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+            <input [(ngModel)]="criterio" name="criterio" (keyup)="cargarUsuarios()" type="text" class="form-control" placeholder="Buscar usuario...">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -31,8 +41,6 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 id="titulo">{{ title }}</h3>
-
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Usuario</label>

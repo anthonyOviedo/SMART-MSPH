@@ -13,7 +13,7 @@ import { DepartmentComponent } from './department/department.component';
 
 const pagesRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Noticias', submenu: '' } },
-    { path: 'usuario', component: UsuarioComponent, data: { titulo: 'Usuarios', submenu: 'Catálogos' } },
+    { path: 'usuario', component: UsuarioComponent, data: { titulo: 'Usuarios', submenu: 'Mantenimiento' } },
     { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil', submenu: '' } },
     { path: 'crearQueja', component: CrearQuejaComponent, data: { titulo: 'Crear Queja', submenu: 'Quejas' } },
     { path: 'departmentos', component: DepartmentComponent, data: { titulo: 'Departamentos', submenu: 'Mantenimiento' } },

@@ -12,6 +12,7 @@ import { FormControl } from '@angular/forms';
 
 export class DepartmentComponent implements OnInit {
 
+  titulo: string = 'Registrar usuario';
   nDnombre = new FormControl('');
   nDpersona_id = new FormControl('');
   nDId = new FormControl('');
@@ -31,6 +32,7 @@ export class DepartmentComponent implements OnInit {
 
   ngOnInit() {
     this.loadusers();
+    this.showAll();
   }
 
   saveDepartment() {
