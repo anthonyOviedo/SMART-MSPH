@@ -142,16 +142,67 @@ namespace Business.Services
             }
         }
 
-        public void Eliminar(string usuario_Id)
+
+        public void addUser(Usuario usuario) {
+            string query;
+            try
+            {
+                connection.Open();
+                connection.BeginTransaction();
+
+                query = "CALL addUser(" + Int32.Parse(usuario.usuario_Id) +",'"+ usuario.nombre
+                    + "','" + usuario.password+ "'," + usuario.persona.persona_Id +","+ usuario.rol + ","+ usuario.departamento.departamento_Id +");";
+
+                connection.Execute(query);
+                connection.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                connection.RollBackTransaction();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void updateUser(Usuario usuario)
         {
+            string query;
+            try
+            {
+                connection.Open();
+                connection.BeginTransaction();
+
+                query = "CALL updateUser(" + Int32.Parse(usuario.usuario_Id) + ",'" + usuario.nombre
+                    + "'," + usuario.rol + "," + usuario.departamento.departamento_Id + ");";
+
+                connection.Execute(query);
+                connection.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                connection.RollBackTransaction();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+        public void Eliminar(string usuario_Id)
+            {
             string query;
 
             try
             {
                 connection.Open();
                 connection.BeginTransaction();
-
-                query = "exec Usuario_Eliminar '" + usuario_Id + "'";
+//CALL insert_studentinfo(125,'Raman','Bangalore','Computers')//
+                query = "CALL deleteUser(" + Int32.Parse(usuario_Id) + ")";
 
                 connection.Execute(query);
                 connection.CommitTransaction();

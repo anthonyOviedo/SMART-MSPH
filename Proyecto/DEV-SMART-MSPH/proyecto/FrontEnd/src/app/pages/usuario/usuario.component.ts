@@ -41,6 +41,7 @@ export class UsuarioComponent implements OnInit {
   newUser: boolean = true;
   public aUser: Usuario = new Usuario(null, '', null, '', new Persona(null, '', '', '', '', '', ''), new Departamento(null, '', ''));
   public nonEditable = false;
+  public editando = false;
 
   // // Pagination
   // page: number = 1;
@@ -63,13 +64,18 @@ export class UsuarioComponent implements OnInit {
   }
   ngOnInit() {
     this.getDepartments();
+    this.cargarUsuarios();
   }
   addUsuario() {
-    //hacer validaciones aqui.
-    this.usuarioService.guardar(this.aUser, true).subscribe(result => {
-      console.log(result);
-      return;
-    });
+    if (this.editando === true) { this.updateUser(); } else {
+      this.aUser.password = this.cryptoService.encryptPassword(this.aUser.password);
+      this.usuarioService.guardar(this.aUser, true).subscribe(result => {
+        console.log(result);
+        return;
+      });
+    }
+    // hacer validaciones aqui.
+
   }
 
 
@@ -127,13 +133,13 @@ export class UsuarioComponent implements OnInit {
     // this.title = 'Registrar usuario';
     // this.txtUsuario.readOnly = false;
     // this.txtPassword.readOnly = false;
+
     this.nonEditable = false;
     this.aUser = new Usuario(null, '', null, '', new Persona(null, '', '', '', '', '', ''), new Departamento(null, '', ''));
     document.getElementById('resetPass').style.display = 'none';
     document.getElementById('userPassword').style.display = 'block';
     this.modalTittle = 'Nuevo Usuario';
-
-
+    this.editando = false;
 
   }
 
@@ -165,9 +171,18 @@ export class UsuarioComponent implements OnInit {
     this.nonEditable = true;
     //hacer una funcion para prepara este formulario para la edicion del usuario.
     this.aUser = usuario;
+    this.editando = true;
     // bloquear el user ID y la contrasenna
     document.getElementById('resetPass').style.display = 'block';
     document.getElementById('userPassword').style.display = 'none';
     this.modalTittle = 'Editar Usuario';
+
+  }
+
+  updateUser() {
+    this.usuarioService.update(this.aUser).subscribe(result => {
+      console.log(result);
+      return;
+    });
   }
 }

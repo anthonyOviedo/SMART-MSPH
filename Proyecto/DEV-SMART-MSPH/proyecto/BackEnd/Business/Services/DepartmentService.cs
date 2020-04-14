@@ -93,7 +93,7 @@ namespace Business.Services
                 connection.Open();
                 connection.BeginTransaction();
 
-                query = "delete from department where Department_Id = " + departmentId + ";";
+                query = "CALL deleteDepartment(" + departmentId + ");";
                 connection.Execute(query);
                 connection.CommitTransaction();
             }
@@ -108,6 +108,30 @@ namespace Business.Services
             }
         }
 
+        public void updateDepartement(Departamento dep) {
+            string query;
+
+            try
+            {
+                connection.Open();
+                connection.BeginTransaction();
+
+                query = "CALL updateDepartment(" + dep.departamento_Id + ",'" + dep.nombre.Trim() + "'," + dep.persona_id + ");";
+
+                connection.Execute(query);
+                connection.CommitTransaction(); 
+            }
+            catch (Exception ex)
+            {
+                connection.RollBackTransaction();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        
         #endregion
 
         #region Implements Interface IDisposable

@@ -157,4 +157,16 @@ export class UsuarioService {
 
   }
 
+  update(usuario: Usuario) {
+    let url = `${URL_SERVICE}/usuario/updateUser`;
+
+    return this.http.post(url, usuario)
+      .pipe(
+        map((resp: ApiResponse) => Swal.fire({ title: 'Actualizacion de Datos', text: resp.message, type: 'success' }))
+      );
+
+
+
+  }
+
 }

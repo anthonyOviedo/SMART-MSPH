@@ -16,6 +16,8 @@ export class DepartmentComponent implements OnInit {
   aDepartment = new Departamento(null, '', '');
   nonEditable = false;
   modalTittle = '';
+  public editando = false;
+
   // nDnombre = new FormControl('');
   // nDpersona_id = new FormControl('');
   // nDId = new FormControl('');
@@ -39,6 +41,9 @@ export class DepartmentComponent implements OnInit {
   }
 
   saveDepartment(departament: Departamento) {
+    if (this.editando) {
+      this.updateDepartment(departament);
+    }
     this.departamentService.addDepartment(departament.departamento_Id, departament.nombre, departament.persona_id).subscribe(result => {
       console.log(result);
     });
@@ -60,16 +65,24 @@ export class DepartmentComponent implements OnInit {
     this.nonEditable = false;
     this.aDepartment = new Departamento(null, '', '');
     this.modalTittle = 'Nuevo Departamento';
+    this.editando = false;
   }
 
   editar(departamento: Departamento) {
     this.nonEditable = true;
     this.aDepartment = departamento;
     this.modalTittle = 'Editar Departamento';
+    this.editando = true;
   }
 
   eliminar(departamento: Departamento) {
     this.departamentService.deleteDepartement(departamento.departamento_Id).subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  updateDepartment(departament: Departamento) {
+    this.departamentService.updateDepartment(departament).subscribe(result => {
       console.log(result);
     });
   }

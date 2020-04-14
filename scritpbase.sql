@@ -218,7 +218,7 @@ USE `smartmsph` ;
 
 -- -----------------------------------------------------
 -- procedure UsuarioRegistro
--- -----------------------------------------------------
+-- -----------------------------------------------------s
 
 USE `smartmsph`;
 DROP procedure IF EXISTS `smartmsph`.`UsuarioRegistro`;
@@ -262,8 +262,111 @@ INSERT INTO `department` values (`PDepartment_Id`, `PDepartmentName`,`PPerson_Id
 
 END$$
 DELIMITER ;
+-- -----------------------------------------------------
+-- procedure addUser
+-- -----------------------------------------------------
+USE `smartmsph`;
+DROP procedure IF EXISTS `smartmsph`.`addUser`;
 
+DELIMITER $$
+USE `smartmsph`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addUser`(
+  IN`PUser_Id` SMALLINT(20),
+  IN`PUserName` VARCHAR(45),
+  IN`PPassword` VARCHAR(45),
+  IN`PPerson_id` BIGINT(20),
+  IN`PRole_id` SMALLINT(6),
+  IN`Pdepartment_id` SMALLINT(6)
+  )
+BEGIN
 
+INSERT INTO user(User_Id,UserName,Password,Person_id,Role_id,department_id)
+ values(PUser_Id,PUserName,PPassword,PPerson_id,PRole_id,Pdepartment_id);
+
+END$$
+DELIMITER ;
+-- -----------------------------------------------------
+-- procedure deleteUser
+-- -----------------------------------------------------
+USE `smartmsph`;
+DROP procedure IF EXISTS `smartmsph`.`deleteUser`;
+
+DELIMITER $$
+USE `smartmsph`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteUser`(IN`PUser_Id` SMALLINT(20))
+BEGIN
+
+DELETE FROM user WHERE User_Id = PUser_Id;
+
+END$$
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure deleteDepartment
+-- -----------------------------------------------------
+USE `smartmsph`;
+DROP procedure IF EXISTS `smartmsph`.`deleteDepartment`;
+
+DELIMITER $$
+USE `smartmsph`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteDepartment`(IN`PDepartment_Id` SMALLINT(20))
+BEGIN
+
+DELETE FROM department WHERE Department_Id = PDepartment_Id;
+
+END$$
+DELIMITER ;
+-- -----------------------------------------------------
+-- procedure updateUser
+-- -----------------------------------------------------
+USE `smartmsph`;
+DROP procedure IF EXISTS `smartmsph`.`updateUser`;
+
+DELIMITER $$
+USE `smartmsph`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateUser`( 
+IN PUser_Id SMALLINT(20),
+IN PUserName VARCHAR(45),
+IN PRole_id SMALLINT(6),
+IN Pdepartment_id SMALLINT(6)
+)
+
+BEGIN
+
+UPDATE user 
+SET
+UserName=PUserName,
+Role_id = PRole_id,
+department_id = Pdepartment_id
+
+WHERE PUser_Id = User_Id ;
+
+END$$
+DELIMITER ;
+-- -----------------------------------------------------
+-- procedure updateDepartment
+-- -----------------------------------------------------
+USE `smartmsph`;
+DROP procedure IF EXISTS `smartmsph`.`updateDepartment`;
+
+DELIMITER $$
+USE `smartmsph`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateDepartment`( 
+IN PDepartment_Id SMALLINT(20),
+IN PDepartmentName VARCHAR(45),
+IN PPerson_Id BIGINT(20) 
+)
+
+BEGIN
+
+UPDATE department 
+SET
+DepartmentName = PDepartmentName,
+Person_Id = PPerson_Id
+WHERE Department_Id = PDepartment_Id ;
+
+END$$
+DELIMITER ;
 -- -----------------------------------------------------
 -- procedure VerifyCredentials
 -- -----------------------------------------------------
@@ -283,7 +386,6 @@ LEFT JOIN department c ON a.department_id = c.Department_Id
  where a.UserName=Puser and a.Password = Ppassword;
 
 END$$
-
 DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;

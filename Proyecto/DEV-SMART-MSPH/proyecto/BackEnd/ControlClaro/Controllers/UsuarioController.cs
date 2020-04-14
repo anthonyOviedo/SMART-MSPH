@@ -46,7 +46,7 @@ namespace ControlClaro.Controllers
         }
         
         [HttpDelete]
-        [Route("api/usuario/eliminar/{usuario_Id}/{emp_Id}/{producto_Id}")]
+        [Route("api/usuario/eliminar/{usuario_Id}")]
         public HttpResponseMessage Eliminar(string usuario_Id)
         {
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -129,7 +129,7 @@ namespace ControlClaro.Controllers
 
                 using (UsuarioService service = new UsuarioService())
                 {
-                    service.Registrarse(usuario);
+                 service.addUser(usuario);
                     data.result = null;
                     data.status = true;
                     data.message = "El Registro del usuario se completó correctamente";
@@ -149,6 +149,44 @@ namespace ControlClaro.Controllers
 
             return response;
         }
+
+
+
+        [HttpPost]
+        [Route("api/usuario/updateUser")]
+        public HttpResponseMessage updateUser([FromBody] Usuario usuario)
+        {
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            ResponseConfig config = VerifyAuthorization(Request.Headers);
+            RestResponse data = new RestResponse();
+
+            try
+            {
+                VerifyMessage(config.errorMessage);
+
+                using (UsuarioService service = new UsuarioService())
+                {
+                    service.updateUser(usuario);
+                    data.result = null;
+                    data.status = true;
+                    data.message = "El Registro del usuario se completó correctamente";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = config.isAuthenticated ? HttpStatusCode.BadRequest : HttpStatusCode.Unauthorized;
+                data.status = false;
+                data.message = ex.Message;
+                data.error = NewError(ex, "Registro del usuario");
+            }
+            finally
+            {
+                response.Content = CreateContent(data);
+            }
+
+            return response;
+        }
+
 
 
 

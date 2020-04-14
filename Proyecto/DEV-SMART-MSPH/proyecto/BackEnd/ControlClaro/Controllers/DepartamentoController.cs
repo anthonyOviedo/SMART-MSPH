@@ -44,7 +44,6 @@ namespace ControlClaro.Controllers
             return response;
         }
 
-
         [HttpPost]
         [Route("api/Departamento/add")]
         public HttpResponseMessage addDepartment([FromBody] Departamento department)
@@ -108,6 +107,42 @@ namespace ControlClaro.Controllers
                 data.status = false;
                 data.message = ex.Message;
                 data.error = NewError(ex, "Eliminar usuario");
+            }
+            finally
+            {
+                response.Content = CreateContent(data);
+            }
+
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("api/Departamento/update")]
+        public HttpResponseMessage updateUser([FromBody] Departamento departamento)
+        {
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            ResponseConfig config = VerifyAuthorization(Request.Headers);
+            RestResponse data = new RestResponse();
+
+            try
+            {
+                VerifyMessage(config.errorMessage);
+
+                using (DepartmentService service = new DepartmentService())
+                {
+                    service.updateDepartement(departamento);
+                    data.result = null;
+                    data.status = true;
+                    data.message = "El Registro del usuario se completó correctamente";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = config.isAuthenticated ? HttpStatusCode.BadRequest : HttpStatusCode.Unauthorized;
+                data.status = false;
+                data.message = ex.Message;
+                data.error = NewError(ex, "Registro del usuario");
             }
             finally
             {

@@ -20,6 +20,13 @@ export class DepartmentService {
   ) {
   }
 
+  updateDepartment(departament: Departamento) {
+    let url = `${URL_SERVICE}/Departamento/update`;
+    return this.http.post(url, departament)
+      .pipe(
+        map((resp: ApiResponse) => Swal.fire({ title: 'Acutalizacion de datos exitosa', text: resp.message, type: 'success' }))
+      );
+  }
   getDepartments() {
     const url = `${URL_SERVICE}/Departamento/list`;
     return this.http.get(url).pipe(map((data: ApiResponse) => data.result.departments));
