@@ -120,19 +120,16 @@ export class UsuarioService {
 
   guardar(usuario: Usuario, nuevo: boolean) {
 
-    let url = `${URL_SERVICE}/usuario/guardar/${nuevo}`;
+    let url = `${URL_SERVICE}/usuario/addUser`;
 
     return this.http.post(url, usuario)
       .pipe(
         map((resp: ApiResponse) => {
-
           Swal.fire({ title: 'Usuario', text: resp.message, type: 'success' });
-
-          if (usuario.usuario_Id === this.usuario.usuario_Id) {
-            usuario.password = '';
-            // this.guardarStorage( this.token, usuario, this.empresa );
-          }
-
+          // if (usuario.usuario_Id === this.usuario.usuario_Id) {
+          //   usuario.password = '';
+          //   // this.guardarStorage( this.token, usuario, this.empresa );
+          // }
         })
       );
 

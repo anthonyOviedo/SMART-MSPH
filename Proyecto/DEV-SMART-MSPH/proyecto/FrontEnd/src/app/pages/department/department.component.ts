@@ -13,9 +13,12 @@ import { FormControl } from '@angular/forms';
 export class DepartmentComponent implements OnInit {
 
   titulo: string = 'Registrar usuario';
-  nDnombre = new FormControl('');
-  nDpersona_id = new FormControl('');
-  nDId = new FormControl('');
+  aDepartment = new Departamento(null, '', '');
+  nonEditable = false;
+  modalTittle = '';
+  // nDnombre = new FormControl('');
+  // nDpersona_id = new FormControl('');
+  // nDId = new FormControl('');
 
 
   Departamento: Departamento;
@@ -35,14 +38,8 @@ export class DepartmentComponent implements OnInit {
     this.showAll();
   }
 
-  saveDepartment() {
-    this.departamentService.addDepartment(this.nDId.value, this.nDnombre.value, this.nDpersona_id.value).subscribe(result => {
-      console.log(result);
-    });
-  }
-
-  deleteDepartment(departmentId) {
-    this.departamentService.deleteDepartement(departmentId).subscribe(result => {
+  saveDepartment(departament: Departamento) {
+    this.departamentService.addDepartment(departament.departamento_Id, departament.nombre, departament.persona_id).subscribe(result => {
       console.log(result);
     });
   }
@@ -59,9 +56,22 @@ export class DepartmentComponent implements OnInit {
     });
   }
 
-  editDepartment(departmentId) {
-    //mostrar en el modal el menu para editar
+  nuevo() {
+    this.nonEditable = false;
+    this.aDepartment = new Departamento(null, '', '');
+    this.modalTittle = 'Nuevo Departamento';
+  }
 
+  editar(departamento: Departamento) {
+    this.nonEditable = true;
+    this.aDepartment = departamento;
+    this.modalTittle = 'Editar Departamento';
+  }
+
+  eliminar(departamento: Departamento) {
+    this.departamentService.deleteDepartement(departamento.departamento_Id).subscribe(result => {
+      console.log(result);
+    });
   }
 
 

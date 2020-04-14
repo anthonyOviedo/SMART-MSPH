@@ -14,51 +14,52 @@
 
     <button type="button" class="btn btn-primary" (click)="showAll()">Ver Todos</button>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo Departamento</button>
+    <button type="button" class="btn btn-primary" (click)="nuevo()" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo Departamento</button>
 
     <br>
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Nuevo Departamento</h2>
+                    <h2>{{modalTittle}}</h2>
                 </div>
 
                 <div class="container2">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">ID</span>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>ID del departamento</label>
+                            <input [disabled]="nonEditable" [(ngModel)]="aDepartment.departamento_Id" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         </div>
-                        <input [formControl]="nDId" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+
+                        <div class="form-group col-md-6">
+                            <label>Nombre</label>
+                            <input [(ngModel)]="aDepartment.nombre" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Encargado</label>
+                            <div>
+                                <select [(ngModel)]="aDepartment.persona_id" class="custom-select" id="inputGroupSelect01">
+                                <option *ngFor="let element of usuarios;" value={{element.persona.persona_Id}}> {{element.usuario_Id}} - {{element.nombre}} - {{element.persona.persona_Id}}</option>
+                            </select>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-                        </div>
-                        <input [formControl]="nDnombre" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Encargado</label>
-                        </div>
-                        <select [formControl]="nDpersona_id" class="custom-select" id="inputGroupSelect01">
-                            <option selected>Selecione un departamento</option>
-                            <!-- mandar a traer todos los usuarios para escojer uno, quiza un autocomplete para escojerlo...  -->
-                            <option *ngFor="let element of usuarios;" value={{element.persona.persona_Id}}> {{element.usuario_Id}} - {{element.nombre}} - {{element.persona.persona_Id}}</option>
+                    <div class="float-right">
 
-                        </select>
-                    </div>
-
-                    <button data-dismiss="modal" type="button" (click)="saveDepartment()" class="btn btn-primary">
-                        <i class="material-icons">done</i>
-                        Guardar
-                    </button>
-
-                    <button data-dismiss="modal" type="button" class="btn btn-secondary">
+                        <button data-dismiss="modal" type="button" class="btn btn-secondary">
                         <i class="material-icons">clear</i>                
                         Cancelar                
                     </button>
+
+                        <button data-dismiss="modal" type="button" (click)="saveDepartment(aDepartment)" class="btn btn-primary">
+                        <i class="material-icons">done</i>
+                        Guardar
+                    </button>
+                    </div>
 
                 </div>
 
@@ -88,21 +89,22 @@
                             </thead>
                             <tbody>
 
-                                <tr *ngFor="let element of departamentos;">
-                                    <td> {{element.departamento_Id}} </td>
-                                    <td> {{element.nombre}}</td>
-                                    <td> {{element.persona_id}}</td>
+                                <tr *ngFor="let departamento of departamentos;">
+                                    <td> {{departamento.departamento_Id}} </td>
+                                    <td> {{departamento.nombre}}</td>
+                                    <td> {{departamento.persona_id}}</td>
+
                                     <td>
-                                        <button type="button" class="btn btn-danger" (click)="deleteDepartment(element.departamento_Id)">
-                            <i class="far fa-trash-alt" ></i>
-                        </button>
-                                        <button type="button" class="btn btn-info" (click)="editDepartment(element.departamento_Id)">
-                            <i class="far fa-edit"></i>
-                        </button>
+                                        <button type="button" class="btn btn-danger" (click)="eliminar(departamento)">
+                                            <i class="far fa-trash-alt" ></i>
+                                        </button>
 
+                                        <button type="button" class="btn btn-info" data-target=".bd-example-modal-lg" data-toggle="modal" (click)="editar(departamento)">
+                                            <i class="far fa-edit"></i>
+                                        </button>
                                     </td>
-                                </tr>
 
+                                </tr>
                             </tbody>
                         </table>
                     </div>

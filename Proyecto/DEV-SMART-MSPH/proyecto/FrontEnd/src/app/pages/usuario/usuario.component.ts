@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Usuario } from 'src/app/models/model.index';
-import { UsuarioService, CryptoService, MessageService } from 'src/app/services/service.index';
+import { Usuario, Persona, Departamento } from 'src/app/models/model.index';
+import { UsuarioService, CryptoService, MessageService, DepartmentService } from 'src/app/services/service.index';
 import { FormControl } from '@angular/forms';
+import { ThrowStmt } from '@angular/compiler';
 
 
 @Component({
@@ -12,16 +13,16 @@ import { FormControl } from '@angular/forms';
 })
 export class UsuarioComponent implements OnInit {
 
-  departamento: any;
+  aDepartament: any;
   usuario_Id: string;
 
   //para el nuevo usuario
-  nUidUser = new FormControl('');
-  nUname = new FormControl('');
-  nUpassword = new FormControl('');
-  nUcedula = new FormControl('');
-  nUrol = new FormControl('');
-  nUdepartment = new FormControl('');
+  // nUidUser = new FormControl('');
+  // nUname = new FormControl('');
+  // nUpassword = new FormControl('');
+  // nUcedula = new FormControl('');
+  // nUrol = new FormControl('');
+  // nUdepartment = new FormControl('');
 
 
 
@@ -29,14 +30,17 @@ export class UsuarioComponent implements OnInit {
   criterio: string = '';
   public cantidad: number = 0;
   public usuarios = [];
+  public departamentos = [];
+  public modalTittle = '';
 
   // Mantenimiento
   title: string = 'Registrar usuario';
-  usuario: Usuario;
   txtUsuario: HTMLInputElement;
   txtPassword: HTMLInputElement;
   guardando: boolean = false;
   newUser: boolean = true;
+  public aUser: Usuario = new Usuario(null, '', null, '', new Persona(null, '', '', '', '', '', ''), new Departamento(null, '', ''));
+  public nonEditable = false;
 
   // // Pagination
   // page: number = 1;
@@ -45,33 +49,29 @@ export class UsuarioComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private cryptoService: CryptoService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private departmentService: DepartmentService
+
   ) {
-    this.departamento = this.usuarioService.Departamento;
+    this.aDepartament = this.usuarioService.Departamento;
   }
 
+  getDepartments() {
+    this.departmentService.getDepartments().subscribe(result => {
+      this.departamentos = result;
+    });
+  }
   ngOnInit() {
-
+    this.getDepartments();
   }
   addUsuario() {
-
+    //hacer validaciones aqui.
+    this.usuarioService.guardar(this.aUser, true).subscribe(result => {
+      console.log(result);
+      return;
+    });
   }
-  nuevo() {
 
-    this.newUser = true;
-    this.title = 'Registrar usuario';
-    this.txtUsuario.readOnly = false;
-    this.txtPassword.readOnly = false;
-
-    this.usuario = new Usuario(
-      0,
-      '',
-      0,
-      '',
-      null,
-      null
-    );
-  }
 
   limpiaCriterio() {
     this.criterio = '';
@@ -100,28 +100,43 @@ export class UsuarioComponent implements OnInit {
 
   // }
 
-  guardar(form: NgForm) {
+  //guardar(form: NgForm) {
 
-    if (form.invalid) {
-      return;
-    }
+  // if (form.invalid) {
+  //   return;
+  // }
 
-    this.guardando = true;
+  // this.guardando = true;
 
-    let user: Usuario = Object.assign({}, this.usuario);
+  // let user: Usuario = Object.assign({}, this.aUser);
 
 
 
-    user.password = this.cryptoService.encryptPassword(this.usuario.password);
+  // user.password = this.cryptoService.encryptPassword(this.usuario.password);
 
-    this.usuarioService.guardar(user, this.newUser)
-      .subscribe(() => {
-        this.cargarUsuarios();
-        this.nuevo();
-      })
-      .add(() => this.guardando = false);
+  // this.usuarioService.guardar(user, this.newUser)
+  //   .subscribe(() => {
+  //     this.cargarUsuarios();
+  //     this.nuevo();
+  //   })
+  //   .add(() => this.guardando = false);
+
+  //}
+  nuevo() {
+    // this.newUser = true;
+    // this.title = 'Registrar usuario';
+    // this.txtUsuario.readOnly = false;
+    // this.txtPassword.readOnly = false;
+    this.nonEditable = false;
+    this.aUser = new Usuario(null, '', null, '', new Persona(null, '', '', '', '', '', ''), new Departamento(null, '', ''));
+    document.getElementById('resetPass').style.display = 'none';
+    document.getElementById('userPassword').style.display = 'block';
+    this.modalTittle = 'Nuevo Usuario';
+
+
 
   }
+
 
   eliminar(usuario: Usuario) {
 
@@ -143,6 +158,16 @@ export class UsuarioComponent implements OnInit {
 
     });
 
+
   }
 
+  editar(usuario: Usuario) {
+    this.nonEditable = true;
+    //hacer una funcion para prepara este formulario para la edicion del usuario.
+    this.aUser = usuario;
+    // bloquear el user ID y la contrasenna
+    document.getElementById('resetPass').style.display = 'block';
+    document.getElementById('userPassword').style.display = 'none';
+    this.modalTittle = 'Editar Usuario';
+  }
 }

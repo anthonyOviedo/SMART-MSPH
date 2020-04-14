@@ -114,6 +114,44 @@ namespace ControlClaro.Controllers
 
             return response;
         }
+
+        [HttpPost]
+        [Route("api/usuario/addUser")]
+        public HttpResponseMessage addUser([FromBody] Usuario usuario)
+        {
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            ResponseConfig config = VerifyAuthorization(Request.Headers);
+            RestResponse data = new RestResponse();
+
+            try
+            {
+                VerifyMessage(config.errorMessage);
+
+                using (UsuarioService service = new UsuarioService())
+                {
+                    service.Registrarse(usuario);
+                    data.result = null;
+                    data.status = true;
+                    data.message = "El Registro del usuario se completó correctamente";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = config.isAuthenticated ? HttpStatusCode.BadRequest : HttpStatusCode.Unauthorized;
+                data.status = false;
+                data.message = ex.Message;
+                data.error = NewError(ex, "Registro del usuario");
+            }
+            finally
+            {
+                response.Content = CreateContent(data);
+            }
+
+            return response;
+        }
+
+
+
         #endregion
     }
 }

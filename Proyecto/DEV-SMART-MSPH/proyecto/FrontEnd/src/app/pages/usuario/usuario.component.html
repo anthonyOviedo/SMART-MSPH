@@ -21,7 +21,7 @@
     <div class="col-12">
         <div class="input-group mb-3">
             <!-- <input type="text" class="form-control" placeholder="id, nombre, encargado" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
-            <input [(ngModel)]="criterio" name="criterio" (keyup)="cargarUsuarios()" type="text" class="form-control" placeholder="Buscar usuario...">
+            <input name="criterio" (keyup)="cargarUsuarios()" type="text" class="form-control" placeholder="Buscar usuario...">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
             </div>
@@ -34,34 +34,38 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Nuevo Usuario</h2>
+                <h2>{{modalTittle}}</h2>
             </div>
 
             <div class="container2">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>Usuario</label>
-                                    <input [formControl]="nUidUser" name="usuario_Id" id="txtUsuario" type="email" class="form-control" placeholder="Usuario">
+                                    <label>ID Usuario</label>
+                                    <input [disabled]="nonEditable" [(ngModel)]="aUser.usuario_Id" id="userId" id="txtUsuario" type="text" class="form-control" placeholder="ID">
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label>Nombre</label>
-                                    <input [formControl]="nUname" name="nombre" type="text" class="form-control" placeholder="Nombre">
+                                    <input [(ngModel)]="aUser.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Contraseña</label>
-                                    <input [formControl]="nUpassword" name="Contraseña" type="password" class="form-control" placeholder="Contraseña">
+                                    <input [disabled]="nonEditable" [(ngModel)]="aUser.password" id="userPassword" name="Contraseña" type="password" class="form-control" placeholder="Contraseña">
+                                    <button class="btn btn-outline-secondary" type="button" id="resetPass">
+                                        Enviar correo de recuperacion
+                                    </button>
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label>Cedula</label>
-                                    <input [formControl]="nUcedula" name="Cedula" type="text" class="form-control" placeholder="Cedula">
+                                    <input [disabled]="nonEditable" [(ngModel)]="aUser.persona.persona_Id" name="Cedula" type="text" class="form-control" placeholder="Cedula">
                                 </div>
                             </div>
 
@@ -69,8 +73,11 @@
 
                                 <div class="form-group col-md-6">
                                     <label>Rol</label>
-                                    <select [formControl]="nUrol" name="Rol" class="custom-select">                                    
-                                            <option selected>Selecione un ROL</option>
+                                    <select [(ngModel)]="aUser.rol" name="Rol" class="custom-select">                                    
+                                         
+                                            <option value="1" selected>1</option>
+                                            <option value="2" selected>2</option>
+                                            <option value="3" selected>3</option>
                                             <!-- mandar a traer todos los ROLES
                                             <option *ngFor="let element of Roles;" value={{element.persona.persona_Id}}> {{element.usuario_Id}} - {{element.nombre}} - {{element.persona.persona_Id}}</option> -->
                                         </select>
@@ -78,29 +85,25 @@
 
                                 <div class="form-group col-md-6">
                                     <label>Departamento</label>
-                                    <select [formControl]="nUdepartment" class="custom-select">
-                                                <option selected>Selecione un departamento</option>                           
-                                                <!-- mandar a traer todos los usuarios para escojer uno, quiza un autocomplete para escojerlo... 
-                                                <option *ngFor="let element of usuarios;" value={{element.persona.persona_Id}}> {{element.usuario_Id}} - {{element.nombre}} - {{element.persona.persona_Id}}</option> -->    
-                                        </select>
+                                    <select [(ngModel)]="aUser.departamento.departamento_Id" name="Rol" class="custom-select">
+                                          
+                                            <option *ngFor="let element of departamentos;" value={{element.departamento_Id}}> {{element.departamento_Id}} - {{element.nombre}} </option>
+                                    </select>
                                 </div>
                             </div>
-
-
-                            <div class="float-right">
-
-                                <button type="submit" class="btn btn-primary" [disabled]="guardando">
-                                        <i class="material-icons">done</i>
-                                        Guardar
-                                    </button>
-
-                                <button data-dismiss="modal" (click)="nuevo()" type="button" class="btn btn-secondary" [disabled]="guardando">
+                            <hr>
+                            <div>
+                                <div class="float-right">
+                                    <button data-dismiss="modal" (click)="nuevo()" type="button" class="btn btn-secondary" [disabled]="guardando">
                                         <i class="material-icons">clear</i>
                                         Cancelar
                                     </button>
-
+                                    <button (click)="addUsuario()" class="btn btn-primary" [disabled]="guardando">
+                                        <i class="material-icons">done</i>
+                                        Guardar
+                                    </button>
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -116,7 +119,7 @@
         <div>
             <button type="button" class="btn btn-primary" (click)="cargarUsuarios()">Ver Todos</button>
             <!-- mostrar modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo Usuario</button>
+            <button type="button" (click)="nuevo()" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo Usuario</button>
         </div>
         <br>
         <div class="card">
@@ -153,16 +156,18 @@
                                 </td>
 
                                 <td>
-                                    {{ usuario.departamento.departamento_Id}}
+                                    <!-- arreglar esto para que aparezca el nombre.... -->
+                                    {{ (usuario.departamento.departamento_Id) }}
                                 </td>
 
                                 <td>
                                     <!-- (click)="cargarUsuario( usuario )" -->
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="material-icons">edit</i>
+                                    <button type="button" class="btn btn-primary" data-target=".bd-example-modal-lg" data-toggle="modal" (click)="editar( usuario )">
+                                        <i class=" material-icons ">edit</i>
                                     </button>
-                                    <button type="button" class="btn btn-danger" (click)="eliminar( usuario )">
-                                        <i class="material-icons">delete</i>
+
+                                    <button type="button " class="btn btn-danger " (click)="eliminar( usuario ) ">
+                                        <i class="material-icons ">delete</i>
                                     </button>
                                 </td>
                             </tr>
@@ -178,6 +183,6 @@
     </div>
 </div>
 
-<!-- <div class="row animated fadeIn">
+<!-- <div class="row animated fadeIn ">
     
 </div> -->
